@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body{
+    font-family: "sf pro","Helvetica New","Helvetica","Arial",sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "sf pro";
+    src: url(../assets/fonts/sf-pro-text_regular.woff2);
+}
+
+
+/* ESTILOS DEL HEADER */
+
+.main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 48px;
+    align-items: center;
+    padding: 0 30px;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.main-header a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.link-item,
+.texto-logo {
+    transition: all 0.3s;
+}
+
+.link-item:hover,
+.texto-logo:hover {
+    color: white;
+}
+
+.main-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    margin-top: 5px;
+}
+.main-logo img{
+    height: 48px;
+    padding: 5px;
+}
+
+.texto-logo{
+   font: 25px bold;
+}
+
+.wave{
+    margin-top:-250px;
+}
+
+.main-nav{
+    align-items: center;
+    padding-right: 0.4rem;  
+}
+
+.nav-link{
+    display: flex;
+    gap: 1rem;
+}
+
+.boton-menu {
+    display: none;
+}
