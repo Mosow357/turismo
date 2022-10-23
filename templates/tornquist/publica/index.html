@@ -1,13 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turismo Tornquist</title>
-</head>
-<body>
-    <h1>Hola Django</h1>
-    
-</body>
-</html>
+{% extends './base.html' %}
+
+{% block titulo %}Tornquist{% endblock titulo %}
+
+{% block contenido %}
+    <section class="bienvenida">     
+        <h1 class="titulo">Comarca Sierras de la Ventana</h1>    
+        <h2 class="subtitulo">¿En qué te ayudamos?</h2>
+    </section>
+
+    <section class="bloque">
+        <article class="actividades">
+            <img src="static/tornquist/publica/img/senializacion-modified.png" alt="">
+            <p>ACTIVIDADES</p>
+        </article>
+
+        <article class="alojamiento">
+            <img src="static/tornquist/publica/img/alojamiento-modified.png" alt="">
+            <p>ALOJAMIENTO</p>
+        </article>
+    </section>
+    <section class="bloque">
+        <article class="lugares">
+            <img src="static/tornquist/publica/img/mapa-modified.png" alt="">
+            <p>LUGARES <br>DE INTERÉS</p>
+        </article>
+
+        <article class="gastro">
+            <img src="static/tornquist/publica/img/cubiertos-modified.png" alt="">
+            <p>GASTRONOMÍA</p>
+        </article>
+    </section>
+{% endblock contenido %}
