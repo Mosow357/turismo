@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    
+    
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: black;
+}
+
+.card-board {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.card {
+    position: relative;
+    width: 380px;
+    height: 250px;
+    margin: 20px;
+    
+}
+
+.card .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.card .front {
+    transform: perspective(600px) rotateX(0deg);
+    box-shadow: 0 5px 10px #03a9f4;
+    opacity: .8;
+}
+
+.card .front img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+   
+}
+
+.card .front h3 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    color: aliceblue;
+    background: rgba(0, 0, 0, 0.679);
+    text-align: center;
+}
+
+.card .back {
+    transform: perspective(600px) rotateX(180deg);
+    background: black;
+    padding: 15px;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 5px 10px #03a9f4;
+}
+
+.card .back .link {
+    border-top: solid 1px #f3f3f3;
+    height: 50px;
+    line-height: 50px;
+}
+
+.card .back a{
+    color: aliceblue;
+}
+
+.card .back h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.card:hover .front {
+    transform: perspective(600px) rotate(180deg);
+}
+
+.card:hover .back {
+    transform: perspective(600px) rotate(360deg);
+}
+
+@media (min-width: 1180px){
+    .card-board {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        align-content: space-around;
+        
+               
+    }
+    
+
+    
+}

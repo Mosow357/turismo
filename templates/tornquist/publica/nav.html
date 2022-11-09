@@ -1,0 +1,21 @@
+<header>
+    <nav>
+        <input type="checkbox" name="" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <a href="{% url 'inicio' %}" class="enlace">
+            {% load static %}
+            <img src= "{% static '/tornquist/publica/img/Municipio-icono.png'%}" alt="" srcset="" class="logo">
+        </a>
+        <ul class="navBar">
+            <li><a href="{% url 'inicio' %}" class="active">Inicio</a></li>
+            <li><a href="{% url 'gastronomia' %}">Gastronomia</a></li>
+            <li><a href="{% url 'zonasAlojamientos' %}">Alojamiento</a></li>
+            <li><a href="{% url 'actividades' %}">Actividades</a></li>
+            <li><a href="{% url 'puntosInteres' %}">Puntos de Interés</a></li>
+            <li><a href="{% url 'emergencias' %}">Emergencias</a></li>
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
