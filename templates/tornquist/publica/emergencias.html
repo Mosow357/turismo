@@ -1,0 +1,57 @@
+{% extends './base.html' %}
+
+{% block titulo %}Emergencias{% endblock titulo %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/zonasAlojamiento.css'%}?v={% now 'U' %}">
+{% endblock css %}
+
+
+{% block contenido %}
+<section class="card-board">
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/verde.jpg'%}"  alt="...">
+            <h3>Ambulancia</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+            <div class="face back">
+             <h3>AMBULANCIA</h3>
+             <i class="fas fa-phone" alt="call 54-291-4260455"></i>Toca para llamar
+            </div>   
+        </a>   
+    </div>
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/azul.jpg'%}"  alt="...">
+            <h3>Policía</h3>
+        </div>
+        
+        <a href="tel:291-4260455">
+            <div class="face back">
+             <h3>POLICÍA</h3>
+             <i class="fas fa-phone" alt="call 54-291-4260455"></i>Toca para llamar
+
+            </div>   
+        </a>    
+    </div>
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/rojo.jpg'%}"  alt="...">
+            <h3>Bomberos</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+            <div class="face back">
+             <h3>BOMBEROS</h3>
+             <i class="fas fa-phone" alt="call 54-291-4260455"></i>Toca para llamar
+
+            </div>   
+        </a>  
+    </div>                
+</section> 
+{% endblock contenido %}

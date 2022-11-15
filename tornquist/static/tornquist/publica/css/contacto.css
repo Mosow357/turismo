@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+button {
+    border-radius: 17px;
+}
+
+body {
+    background: #181818;
+    color: #fff;
+    line-height: 1.6;
+    
+    padding: 0 4px;
+}
+
+.container {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.logo2 {
+    position: relative;
+    text-align: center;
+    font-size: 3em;
+    margin-top: 15px;
+}
+
+.logo2 b {
+    color: #03a9f4;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-wrapper {
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .3);
+    border-radius: 7px;
+}
+
+.contact-wrapper > * {
+    padding: 1em;
+    
+}
+
+.contact-form {
+    background: #222222;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+
+
+
+.contact-form form p {
+    margin: 0;
+    padding: 1em;
+}
+
+
+
+.contact-form form button,
+.contact-form form input,
+.contact-form form textarea {
+    width: 100%;
+    padding: .7em;
+    border: none;
+    background: none;
+    outline: 0;
+    color: #fff;
+    border-bottom: 1px solid #03a9f4;
+}
+
+.contact-form form button {
+    background: #03a9f4;
+    border: 0;
+    text-transform: uppercase;
+    padding: 4px;
+}
+
+.contact-form form button:hover,
+.contact-form form button:focus {
+    background: #1cb3f8;
+    color: rgb(4, 4, 4);
+    transition: background-color 1s ease-out;
+    outline: 0;
+}
+
+.contact-info {
+    background: #000;
+    padding: 0%;
+    border-radius: 12px;
+    
+}
+
+.contact-info h4, .contact-info ul, .contact-info p {
+    text-align: center;
+    margin: 0;
+}
+
+iframe {
+    border-radius: 17px;
+    width: 95%;
+    margin: 0;
+    
+}
+
+.warnings {
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color: rgb(32, 156, 218);
+    padding-top: 20px;
+}
+
+
+@media(max-width: 820px) {
+    body {
+        padding: 0 4px;
+        
+    }
+      
+     
+    .contact-form input {
+        width: 100vh;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+
+}

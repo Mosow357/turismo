@@ -1,0 +1,100 @@
+body{
+    background-color: black;
+    height: 100vh;
+    
+}
+
+.tarjeta button b {
+    color: #03a9f4;
+    
+}
+
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: -2;
+}
+
+
+.categorias{
+   width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: repeat(2, 1fr);
+   grid-column-gap: 3vh;
+   grid-row-gap: 3vh;
+   align-items: center;
+   
+
+}
+
+.tarjeta{
+    transition: 0.5s;
+    border: 7px;
+    border-color: rgba(231, 234, 237, 0.703);
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    margin: 15px;
+    
+}
+
+.tarjeta button {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgb(2, 166, 242);
+    border-radius: 15px;
+    width: 24vh;
+    height: 24vh;
+   
+    box-shadow: 0 5px 10px #03a9f4;
+    
+
+}
+
+.tarjeta button:hover {
+    transform: scale(1.3) translateY(-5px);
+    
+    color: rgba(2, 166, 242, 0.799);
+    transition: .5s;
+}
+
+.tarjeta a {
+    color: rgba(231, 234, 237, 0.375);
+    transition: 1s;
+   
+    font-size: 13vh;
+}
+
+.tarjeta h3 {
+    color: rgba(231, 234, 237, 0.895);
+}
+
+@media(min-width: 920px){
+    .categorias{
+        display: flex;
+        height: 60vh;
+        justify-content: space-evenly;
+
+    }
+    .social{
+        margin-bottom: 15px;
+    }
+    .tarjeta button{
+        width: 200px;
+        
+    }
+}
+
+@media(max-width: 460px){
+    .categorias {
+        display: flex;
+        flex-direction: column;
+    }
+}

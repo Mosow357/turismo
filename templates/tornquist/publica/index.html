@@ -2,32 +2,39 @@
 
 {% block titulo %}Tornquist{% endblock titulo %}
 
+
 {% block contenido %}
-    <section class="bienvenida">     
-        <h1 class="titulo">Comarca Sierras de la Ventana</h1>    
-        <h2 class="subtitulo">¿En qué te ayudamos?</h2>
-    </section>
+    
+    <section class="categorias">        
+            
+        <div class="tarjeta">
+            <button>
+                <a href="{% url 'gastronomia' %}"><i class="fa-solid fa-utensils"></i></a>
+                <h3><b>GA</b>STRONOMIA</h3>                    
+            </button>
+        </div>
 
-    <section class="bloque">
-        <article class="actividades">
-            <img src="static/tornquist/publica/img/senializacion-modified.png" alt="">
-            <p>ACTIVIDADES</p>
-        </article>
+        <div class="tarjeta">
+            <button>
+                <a href="{% url 'zonasAlojamientos' %}"><i class="fa-solid fa-bed"></i></a>
+                <h3><b>AL</b>OJAMIENTO</h3>
+            </button>                   
+            
+        </div>
 
-        <article class="alojamiento">
-            <img src="static/tornquist/publica/img/alojamiento-modified.png" alt="">
-            <p>ALOJAMIENTO</p>
-        </article>
-    </section>
-    <section class="bloque">
-        <article class="lugares">
-            <img src="static/tornquist/publica/img/mapa-modified.png" alt="">
-            <p>LUGARES <br>DE INTERÉS</p>
-        </article>
+        <div class="tarjeta">
+            <button>
+            <a href="{% url 'actividades' %}"><i class="fa-solid fa-signs-post"></i></a>
+            <h3><b>AC</b>TIVIDADES</h3>                    
+            </button>    
+        </div>        
 
-        <article class="gastro">
-            <img src="static/tornquist/publica/img/cubiertos-modified.png" alt="">
-            <p>GASTRONOMÍA</p>
-        </article>
+        <div class="tarjeta">
+            <button>
+            <a href="{% url 'puntosInteres' %}"><i class="fa-solid fa-map-location-dot"></i></a>
+            <h3><b>PU</b>NTOS DE INTERÉS</h3>
+            </button>                       
+        </div>
+             
     </section>
 {% endblock contenido %}

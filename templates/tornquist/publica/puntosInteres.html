@@ -1,0 +1,149 @@
+{% extends './base.html' %}
+
+{% block titulo %}Puntos de Interés{% endblock titulo %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/zonasAlojamiento.css'%}?v={% now 'U' %}">
+{% endblock css %}
+
+
+{% block contenido %}
+<section class="card-board">
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/ex-club-hotel.jpg'%}"  alt="...">
+            <h3>Ex Club Hotel - Villa Ventana</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+            <div class="face back">
+                <h3>Ex Club Hotel - Villa Ventana</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97625.77332160922!2d-62.206782704088816!3d-38.07560797675392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ec6643e27664d7%3A0xe7f48b43961fb19e!2sMunicipalidad%20de%20Tornquist!5e1!3m2!1ses!2sar!4v1666727353064!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <ul>
+                    <li>
+                      <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
+                      Argentina)
+                    </li>
+                    
+                    <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                    <li>
+                      <i class="fas fa-house"></i> - Villa Ventana Bs. As.
+                    </li>
+                    <li><i class="fas fa-envelope-open-text"></i> - turismo.com.ar</li>
+                  </ul>
+            </div>
+        </a>   
+    </div>
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/cuevaTresPicos.jpg'%}"  alt="...">
+            <h3>Cueva Cerro Tres Picos - Villa Ventana</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+            <div class="face back">
+                <h3>Cueva Cerro Tres Picos - Villa Ventana</h3>
+                <ul>
+                    <li>
+                      <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
+                      Argentina)
+                    </li>
+                    
+                    <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                    <li>
+                      <i class="fas fa-house"></i> - Villa Ventana Bs. As.
+                    </li>
+                    <li><i class="fas fa-envelope-open-text"></i> - turismo.com.ar</li>
+                </ul>
+
+            </div> 
+        </a>
+
+        
+    </div> 
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/BaseCerroVentana.jpg'%}"  alt="...">
+            <h3>Parque Provincial E. Tornquist</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+            <div class="face back">
+                <h3>Parque Provincial E. Tornquist</h3>
+                <ul>
+                    <li>
+                      <i class="fas fa-map-marker-alt"></i> - Tornquist (Bs As -
+                      Argentina)
+                    </li>
+                    
+                    <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                    <li>
+                      <i class="fas fa-house"></i> - Drago 53, Tornquist Bs. As.
+                    </li>
+                    <li><i class="fas fa-envelope-open-text"></i> - RestaurantUrbano.com.ar</li>
+                </ul>
+
+            </div> 
+        </a>
+
+        
+    </div> 
+    
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/hosteria-la-peninsula.jpg'%}"  alt="...">
+            <h3>Hosteria La Peninsula - Villa Ventana</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+            <div class="face back">
+                <h3>Hosteria La Peninsula - Villa Ventana</h3>
+                <ul>
+                    <li>
+                      <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
+                      Argentina)
+                    </li>
+                    
+                    <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                    <li>
+                      <i class="fas fa-house"></i> - Drago 53, Villa Ventana Bs. As.
+                    </li>
+                    <li><i class="fas fa-envelope-open-text"></i> - LaPeninsula.com.ar</li>
+                </ul>
+
+            </div> 
+        </a>
+
+        
+    </div> 
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/ristoranteDaRoberto.jpg'%}"  alt="...">
+            <h3>Ristorante Da Roberto - Villa Ventana</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+            <div class="face back">
+                <h3>Hosteria La Peninsula - Villa Ventana</h3>
+                <ul>
+                    <li>
+                      <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
+                      Argentina)
+                    </li>
+                    
+                    <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                    <li>
+                      <i class="fas fa-house"></i> - Drago 53, Villa Ventana Bs. As.
+                    </li>
+                    <li><i class="fas fa-envelope-open-text"></i> - DaRoberto.com.ar</li>
+                </ul>
+            </div>
+        </a>
+    </div> 
+       
+</section> 
+{% endblock contenido %}

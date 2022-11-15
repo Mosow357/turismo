@@ -1,0 +1,116 @@
+{% extends './base.html' %}
+
+{% block titulo %}Alojamientos{% endblock titulo %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/zonasAlojamiento.css'%}?v={% now 'U' %}">
+{% endblock css %}
+
+
+{% block contenido %}
+<section class="card-board">
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/HotelProvincial.jpg'%}"  alt="...">
+            <h3>Hotel Provincial - Sierra de la Ventana</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+          <div class="face back">
+              <h3>Hotel Provincial - Sierra de la Ventana</h3>
+              <ul>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i> - Sierra de la Ventana (Bs As -
+                    Argentina)
+                  </li>
+                  
+                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                  <li>
+                    <i class="fas fa-house"></i> - Drago 53, Sierra de la Ventana Bs. As.
+                  </li>
+                  <li><i class="fas fa-envelope-open-text"></i> - HotelProvincial.com.ar</li>
+                </ul>
+          </div>
+        </a>            
+    </div>
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/el-balcon-del-golf-sierra-de-la-ventana.jpg'%}"  alt="...">
+            <h3>El Balcon del Golf - Sierra de la Ventana</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+          <div class="face back">
+              <h3>El Balcon del Golf - Sierra de la Ventana</h3>
+              <ul>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i> - Sierra de la Ventana (Bs As -
+                    Argentina)
+                  </li>
+                  
+                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                  <li>
+                    <i class="fas fa-house"></i> - Drago 53, Sierra de la Ventana Bs. As.
+                  </li>
+                  <li><i class="fas fa-envelope-open-text"></i> - ElBalconDelGolf.com.ar</li>
+              </ul>
+          </div>
+        </a>
+    </div> 
+
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/la-gran-cabaña-villa-ventana.jpg'%}"  alt="...">
+            <h3>La Gran Cabaña - Villa Ventana</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+          <div class="face back">
+              <h3>La Gran Cabaña - Villa Ventana</h3>
+              <ul>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
+                    Argentina)
+                  </li>
+                  
+                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                  <li>
+                    <i class="fas fa-house"></i> - Drago 53, Villa Ventana Bs. As.
+                  </li>
+                  <li><i class="fas fa-envelope-open-text"></i> - LaGranCabaña.com.ar</li>
+              </ul>
+          </div>
+        </a>
+    </div> 
+    
+    <div class="card">
+        <div class="face front">
+            {% load static %}<img src="{% static '/tornquist/publica/img/hotel-moreno-tornquist.jpg'%}"  alt="...">
+            <h3>Hotel Moreno - Tornquist</h3>
+        </div>
+
+        <a href="tel:291-4260455">
+          <div class="face back">
+              <h3>Hotel Moreno - Tornquist</h3>
+              <ul>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i> - Tornquist (Bs As -
+                    Argentina)
+                  </li>
+                  
+                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
+                  <li>
+                    <i class="fas fa-house"></i> - Drago 53, Tornquist Bs. As.
+                  </li>
+                  <li><i class="fas fa-envelope-open-text"></i> - LaGranCabaña.com.ar</li>
+              </ul>
+          </div>
+        </a>
+    </div> 
+    
+              
+</section> 
+ 
+{% endblock contenido %}

@@ -1,0 +1,81 @@
+{% extends './base.html' %}
+
+{% block titulo %}Contacto{% endblock titulo %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/contacto.css'%}?v={% now 'U' %}">
+{% endblock css %}
+
+
+{% block contenido %}
+<section class="content showcase">
+    <h1 class="logo2"><b>CO</b>NTACTO</h1>
+
+    <div class="contact-wrapper animated bounceInUp">
+      <div class="contact-form" id="form">
+        <form action="">
+          
+          <div class="div1">
+            <p>
+              <label>Nombre Completo</label>
+              <input type="text" name="fullname" id="name" />
+            </p>
+
+            <p>
+              <label>Número de Teléfono</label>
+              <input type="tel" name="phone" id="phone" />
+            </p>
+          </div>
+          
+          <div class="div2">
+            <p>
+              <label>Email</label>
+              <input type="email" name="email" id="email" />
+            </p>
+
+            <p>
+              <label>Asunto</label>
+              <input type="text" name="affair" id="affair" />
+            </p>
+          </div>
+          
+          <div class="div3">
+              <p class="block">
+                  <label>Mensaje</label>
+                  <textarea name="message" rows="3"></textarea>
+              </p>
+          </div>
+          
+                      
+          <p class="block">
+            <button type="submit">Enviar</button>
+          </p>
+          <p class="warnings" id="warnings"></p>
+        </form>
+      </div>
+      
+      <div class="contact-info">
+        <h4>Informacion</h4>
+        <ul>
+          <li>
+            <i class="fas fa-map-marker-alt"></i> Tornquist (Bs As -
+            Argentina)
+          </li>
+          <li>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97625.77332160922!2d-62.206782704088816!3d-38.07560797675392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ec6643e27664d7%3A0xe7f48b43961fb19e!2sMunicipalidad%20de%20Tornquist!5e1!3m2!1ses!2sar!4v1666727353064!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </li>
+          <li><i class="fas fa-phone"></i> (+54) 0291-4941075</li>
+          <li>
+            <i class="fas fa-house"></i> Sarmiento 53, Tornquist Bs. As.
+          </li>
+          <li><i class="fas fa-envelope-open-text"></i> tornquist.gov.ar</li>
+        </ul>          
+      </div>
+    </div>
+</section>
+{% endblock contenido %}
+
+{% block javascript %}
+    {% load static %}
+    <script src={% static '/tornquist/publica/js/validation.js' %}.></script>
+{% endblock javascript %}
