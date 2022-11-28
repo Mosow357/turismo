@@ -11,157 +11,38 @@
     
 <section class="card-board">
 
-    <div class="card">
-        <div class="face front">
-            {% load static %}<img src="{% static '/tornquist/publica/img/excursiones.jpg'%}"  alt="...">
-            <h3>Excursiones</h3>
-        </div>
-
-        <a href="tel:291-4260455">
-            <div class="face back">
-              <h3>Excursiones</h3>
-              <ul>
-                  <li>
-                    <i class="fas fa-map-marker-alt"></i> - Sierra de la Ventana (Bs As -
-                    Argentina)
-                  </li>
-                  
-                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
-                  <li>
-                    <i class="fas fa-house"></i> - Av San Martin 114, Sierra de la Ventana Bs. As.
-                  </li>
-                  <li><i class="fas fa-envelope-open-text"></i> - MolinoAzul.com.ar</li>
-                </ul>
-            </div>   
-        </a>
-    </div>
+  {% for actividad in actividades %}
+    {% comment %} {% if not actividad.baja %} {% endcomment %}
 
     <div class="card">
-        <div class="face front">
-            {% load static %}<img src="{% static '/tornquist/publica/img/cuevaTresPicos.jpg'%}"  alt="...">
-            <h3>Camping</h3>
-        </div>
+      <div class="face front">
+          <img src="{{actividad.url_img.url}}"  alt="{{actividad.nombre}}">
+          <h3>{{actividad.nombre}}</h3>
+      </div>
 
-        <a href="tel:291-4260455">
-          <div class="face back">
-              <h3>Camping</h3>
-              <ul>
-                  <li>
-                    <i class="fas fa-map-marker-alt"></i> - Sierra de la Ventana (Bs As -
-                    Argentina)
-                  </li>
-                  
-                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
-                  <li>
-                    <i class="fas fa-house"></i> - Av. San Marti 353, Sierra de la Ventana Bs. As.
-                  </li>
-                  <li><i class="fas fa-envelope-open-text"></i> - SolyLuna.com.ar</li>
-              </ul>
-          </div> 
-        </a>
+      
+      <div class="face back">
+        <h3>{{actividad.nombre}}</h3>
+        <ul>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> - {{actividad.ubicacion}}
+            </li>
+              
+            <a href="tel:{{actividad.telefono}}">
+              <li><i class="fas fa-phone"></i> - {{actividad.telefono}}</li>
+            </a>
+            <li>
+              <i class="fas fa-house"></i> - {{actividad.direccion}}
+            </li>
+            <a href="https://{{actividad.pagina_web}}">
+            <li><i class="fas fa-envelope-open-text"></i> - {{actividad.pagina_web}}</li>
+            </a>
+        </ul>
+      </div>
+       
     </div> 
-
-    <div class="card">
-        <div class="face front">
-            {% load static %}<img src="{% static '/tornquist/publica/img/mtb.jpg'%}"  alt="...">
-            <h3>Ciclismo</h3>
-        </div>
-
-        <a href="tel:291-4260455">
-          <div class="face back">
-              <h3>Ciclismo</h3>
-              <ul>
-                  <li>
-                    <i class="fas fa-map-marker-alt"></i> - Tornquist (Bs As -
-                    Argentina)
-                  </li>
-                  
-                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
-                  <li>
-                    <i class="fas fa-house"></i> - Drago 53, Tornquist Bs. As.
-                  </li>
-                  <li><i class="fas fa-envelope-open-text"></i> - RestaurantUrbano.com.ar</li>
-              </ul>
-          </div> 
-        </a>
-    </div> 
-    
-    <div class="card">
-        <div class="face front">
-            {% load static %}<img src="{% static '/tornquist/publica/img/paintball.jpg'%}"  alt="...">
-            <h3>Paintball</h3>
-        </div>
-
-        <a href="tel:291-4260455">
-          <div class="face back">
-              <h3>Paintball</h3>
-              <ul>
-                  <li>
-                    <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
-                    Argentina)
-                  </li>
-                  
-                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
-                  <li>
-                    <i class="fas fa-house"></i> - Drago 53, Villa Ventana Bs. As.
-                  </li>
-                  <li><i class="fas fa-envelope-open-text"></i> - LaPeninsula.com.ar</li>
-              </ul>
-          </div> 
-        </a>
-    </div> 
-
-    <div class="card">
-        <div class="face front">
-            {% load static %}<img src="{% static '/tornquist/publica/img/travesias4x4.jpg'%}"  alt="...">
-            <h3>Travesias 4x4</h3>
-        </div>
-
-        <a href="tel:291-4260455">
-          <div class="face back">
-              <h3>Travesias 4x4</h3>
-              <ul>
-                  <li>
-                    <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
-                    Argentina)
-                  </li>
-                  
-                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
-                  <li>
-                    <i class="fas fa-house"></i> - Drago 53, Villa Ventana Bs. As.
-                  </li>
-                  <li><i class="fas fa-envelope-open-text"></i> - DaRoberto.com.ar</li>
-              </ul>
-          </div> 
-        </a>
-    </div> 
-
-    <div class="card">
-        <div class="face front">
-            {% load static %}<img src="{% static '/tornquist/publica/img/kayak_3.jpg'%}"  alt="...">
-            <h3>Kayak</h3>
-        </div>
-
-        <a href="tel:291-4260455">
-          <div class="face back">
-              <h3>Kayak</h3>
-              <ul>
-                  <li>
-                    <i class="fas fa-map-marker-alt"></i> - Villa Ventana (Bs As -
-                    Argentina)
-                  </li>
-                  
-                  <li><i class="fas fa-phone"></i> - (+54) 0291-4941075</li>
-                  <li>
-                    <i class="fas fa-house"></i> - Drago 53, Villa Ventana Bs. As.
-                  </li>
-                  <li><i class="fas fa-envelope-open-text"></i> - DaRoberto.com.ar</li>
-              </ul>
-          </div> 
-        </a>
-    </div> 
-    
-        
-           
-</section> 
+    {% comment %} {% endif %} {% endcomment %}
+  {% endfor %}
+         
+</section>
 {% endblock contenido %}

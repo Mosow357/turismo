@@ -1,9 +1,6 @@
 body{
     background-color: rgba(0, 0, 0, 0.482);
-    
 }
-
-
 .background{
     position: absolute;
     top: 0;
@@ -13,12 +10,9 @@ body{
     object-fit: cover;
     opacity: 0.5;
 }
-
 button{
     font-size: 11vh;
     opacity: 0.5;
     border-radius: 5vh;
     background-color:  rgba(227, 232, 236, 0.607);
-    
-
 }

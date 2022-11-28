@@ -3,6 +3,8 @@
 {% block titulo %}Contacto{% endblock titulo %}
 {% block css %}
     {% load static %}
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/zonasAlojamiento.css'%}?v={% now 'U' %}">
+    {% load static %}
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/contacto.css'%}?v={% now 'U' %}">
 {% endblock css %}
 
@@ -13,44 +15,29 @@
 
     <div class="contact-wrapper animated bounceInUp">
       <div class="contact-form" id="form">
-        <form action="">
-          
-          <div>
-            <p>
-              <label>Nombre Completo</label>
-              <input type="text" name="fullname" id="name" />
-            </p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <div>
+                {% for campo in contacto_form %}
 
-            <p>
-              <label>Número de Telefono</label>
-              <input type="tel" name="phone" id="phone" />
-            </p>
-          </div>
+                <p>
+                    <label>{{ campo.label }}</label>
+                    {{ campo }}
+                </p>
+                    <div>{{ campo.errors }}</div>
+                {% endfor %}
+            </div>
           
-          <div>
-            <p>
-              <label>Email</label>
-              <input type="email" name="email" id="email" />
-            </p>
-
-            <p>
-              <label>Asunto</label>
-              <input type="text" name="affair" id="affair" />
-            </p>
-          </div>
-          
-          <div>
-              <p>
-                  <label>Mensaje</label>
-                  <textarea name="message" rows="3"></textarea>
-              </p>
-          </div>
-          
-                      
-          <p class="block">
+            <p class="block">
             <button type="submit">Enviar</button>
-          </p>
-          <p class="warnings" id="warnings"></p>
+            </p>
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }} 
+                    </div>
+                {% endfor %}
+            <p class="warnings" id="warnings"></p>
         </form>
       </div>
       
@@ -76,6 +63,6 @@
 {% endblock contenido %}
 
 {% block javascript %}
-    {% load static %}
-    <script src={% static '/tornquist/publica/js/validation.js' %}.></script>
+    {% comment %} {% load static %}
+    <script src={% static '/tornquist/publica/js/validation.js' %}.></script> {% endcomment %}
 {% endblock javascript %}
