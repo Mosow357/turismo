@@ -6,61 +6,43 @@
     box-sizing: border-box;
     font-family: 'Quicksand', sans-serif;
 }
-header{
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-
-}
-
 nav{
     background: rgba(11, 11, 11, 0.959);
     height: 90px;
     width: 100%;
-    margin-bottom: 15px;
-    
+    z-index: 90;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
 }
-
 .enlace{
     position: absolute;
     padding: 2px 50px;
 }
-
 .logo{
     height: 80px;
-
 }
-
 nav .navBar {
     float: right;
-    margin-right: 20px;
-    
-    
+    margin-right: 20px;    
 }
-
 nav ul li{
     display: inline-block;
     line-height: 20px;
-    
-
 }
-
 nav ul li a{
     color: rgba(12, 12, 12, 0.668);
     font-size: 22px;
     font-weight: bold;
     
     border-radius: 7px;
-
 }
-
 .navBar li a.active, .navBar li a:hover{
     background: rgba(2, 166, 242, 0.368);
     transform: scale(1.3) translateY(-5px);
     transition: .5s;
     cursor: pointer;
 }
-
 .checkbtn{
     font-size: 40px;
     color: rgba(231, 234, 237, 0.668);
@@ -68,10 +50,8 @@ nav ul li a{
     line-height: 90px;
     margin-right: 40px;
     cursor: pointer;
-    display: none;
-    
+    display: none; 
 }
-
 #check{
     display: none;
 }
@@ -79,7 +59,6 @@ nav ul li a{
 @media (max-width: 1180px){
     .enlace{
         padding-left: 20px;
-
     }
     nav ul li a{
         font-size: 15px;
@@ -90,18 +69,15 @@ nav ul li a{
     .checkbtn{
         display: block;
     }
-   
-    
     .navBar{
-        position: fixed;
+        /* position: fixed; */
         width: 100%;
         height: 80vh;
         background: rgba(231, 234, 237, 0.825);
         top: 70px;
         left: -100%;
         text-align: center;
-        transition: all .7s;
-        
+        transition: all .7s;  
     }
     nav ul li{
         display: block;
@@ -110,12 +86,9 @@ nav ul li a{
     }
     nav ul li a{
         font-size: 35px;
-        
         color: rgba(7, 7, 7, 0.668);
-        
         font-weight: bold;
         padding: 3px 13px;
-        
     }
     li a:hover, li a.active{
         background: none;
@@ -130,8 +103,6 @@ nav ul li a{
 @media (min-width: 1180px){
     .navBar{
         height: 80px;
-
-
     }
     nav{
         background: rgba(231, 234, 237, 0.504)
@@ -142,5 +113,4 @@ nav ul li a{
     nav .navBar li a{
         padding-right: 7px;
     }
-
 }

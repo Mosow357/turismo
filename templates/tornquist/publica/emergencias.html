@@ -4,8 +4,9 @@
 {% block css %}
     {% load static %}
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/zonasAlojamiento.css'%}?v={% now 'U' %}">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/emergencias.css'%}?v={% now 'U' %}">
 {% endblock css %}
-
 
 {% block contenido %}
 <section class="card-board">
@@ -34,7 +35,6 @@
             <div class="face back">
              <h3>POLICÍA</h3>
              <i class="fas fa-phone" alt="call 54-291-4260455"></i>Toca para llamar
-
             </div>   
         </a>    
     </div>
@@ -49,7 +49,6 @@
             <div class="face back">
              <h3>BOMBEROS</h3>
              <i class="fas fa-phone" alt="call 54-291-4260455"></i>Toca para llamar
-
             </div>   
         </a>  
     </div>                
