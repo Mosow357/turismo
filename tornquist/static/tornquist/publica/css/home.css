@@ -5,6 +5,11 @@ body{
 .tarjeta button b {
     color: #03a9f4;  
 }
+.botonwa {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
 .background{
     position: absolute;
     top: 0;

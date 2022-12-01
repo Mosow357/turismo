@@ -1,0 +1,39 @@
+{% extends './base.html' %}
+
+{% block titulo %}Contacto{% endblock titulo %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/contacto.css'%}?v={% now 'U' %}">
+    <link rel="stylesheet" href="{% static '/tornquist/publica/css/login.css'%}?v={% now 'U' %}">
+{% endblock css %}
+
+{% block contenido %}
+<section class="content showcase">
+    <div class="login-page">
+        <div class="form" >
+          <form class="login-form" method="POST">
+            {% csrf_token %}
+            
+            <input type="text" placeholder="usuario" id="{{ form.username.auto_id }}" name="{{ form.username.name }}" 
+            value="{{ form.username.value | default:'' }}"/>
+            <div class="warnings">{{form.username.errors}}</div>
+
+            <input type="email" placeholder="email" id="{{form.email.auto_id }}" name="{{form.email.name}}"  
+            value="{{ form.email.value | default:'' }}" class="form-control"/>
+            <div class="warnings">{{form.email.errors}}</div>
+
+            <input type="password" placeholder="contraseña" id="{{ form.password1.auto_id }}" name="{{ form.password1.name }}" 
+            value="{{ form.password1.value | default:'' }}"/>
+            <div class="warnings">{{form.password1.errors}}</div>
+
+            <input type="password" placeholder="repetir contraseña" id="{{ form.password2.auto_id }}" name="{{ form.password2.name }}" 
+            value="{{ form.password2.value | default:'' }}"/>
+            <div class="warnings">{{form.password2.errors}}</div>
+
+            <button type="submit" href="{% url 'inicio' %}">Registrarse</button>
+            <p class="message">Ya estas registrado? <a href="{% url 'login' %}">Logueate</a></p>
+          </form>
+        </div>
+    </div>
+</section>
+{% endblock contenido %}

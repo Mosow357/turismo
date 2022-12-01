@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/contacto.css'%}?v={% now 'U' %}">
 {% endblock css %}
 
-
 {% block contenido %}
 <section class="content showcase">
     <h1 class="logo2"><b>CO</b>NTACTO</h1>
@@ -29,9 +28,11 @@
                 {% endfor %}
             </div>
           
-            <p class="block">
-            <button type="submit">Enviar</button>
-            </p>
+            <div class="center">
+              <button type="submit">Enviar</button>
+            </div>
+            
+            
             {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}" role="alert">
                         {{ message }} 

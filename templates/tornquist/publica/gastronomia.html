@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/zonasAlojamiento.css'%}?v={% now 'U' %}">
 {% endblock css %}
 
-
 {% block contenido %}
 <section class="card-board">
 
@@ -18,7 +17,6 @@
           <img src="{{restaurante.url_img.url}}"  alt="{{restaurante.nombre}}">
           <h3>{{restaurante.nombre}}</h3>
       </div>
-
       
       <div class="face back">
         <h3>{{restaurante.nombre}}</h3>
