@@ -13,10 +13,11 @@ class CardABS(models.Model):
 
     class Meta:
         abstract = True
-
+    
     def delete(self,using=None,keep_parents=False):
         self.url_img.storage.delete(self.url_img.name)
         super().delete()
+
 
 class Gastronomia(CardABS):
 

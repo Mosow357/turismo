@@ -10,21 +10,37 @@ nav{
     background: rgba(11, 11, 11, 0.959);
     height: 90px;
     width: 100%;
-    z-index: 90;
+    z-index: 999;
     position: fixed;
-    overflow: hidden;
+    overflow: visible;
     top: 0;
+}
+.boton {
+    background: #03a9f4;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    /* transition: all 0.3 ease; */
+    cursor: pointer;
+}
+.boton:hover {
+    background: #43A047;
 }
 .enlace{
     position: absolute;
     padding: 2px 50px;
+    display: inline-block;
 }
 .logo{
     height: 80px;
 }
 nav .navBar {
     float: right;
-    margin-right: 20px;    
+    margin-right: 20px;   
+    text-align: center; 
 }
 nav ul li{
     display: inline-block;
@@ -34,8 +50,10 @@ nav ul li a{
     color: rgba(12, 12, 12, 0.668);
     font-size: 22px;
     font-weight: bold;
-    
     border-radius: 7px;
+}
+nav ul li p {
+    color:rgba(12, 12, 12, 0.668);
 }
 .navBar li a.active, .navBar li a:hover{
     background: rgba(2, 166, 242, 0.368);
@@ -70,7 +88,7 @@ nav ul li a{
         display: block;
     }
     .navBar{
-        /* position: fixed; */
+        position: fixed;
         width: 100%;
         height: 80vh;
         background: rgba(231, 234, 237, 0.825);

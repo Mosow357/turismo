@@ -9,13 +9,20 @@
             <img src= "{% static '/tornquist/publica/img/Municipio-icono.png'%}" alt="" srcset="" class="logo">
         </a>
         <ul class="navBar">
-            <li><a href="{% url 'inicio' %}" class="active">Inicio</a></li>
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
             <li><a href="{% url 'gastronomia' %}">Gastronomia</a></li>
             <li><a href="{% url 'zonasAlojamientos' %}">Alojamiento</a></li>
             <li><a href="{% url 'actividades' %}">Actividades</a></li>
             <li><a href="{% url 'puntosInteres' %}">Puntos de Interés</a></li>
             <li><a href="{% url 'emergencias' %}">Emergencias</a></li>
             <li><a href="{% url 'contacto' %}">Contacto</a></li>
+            {% if user.is_authenticated %}
+                <li><p type="text" style="display: inline" class="">Hola, {{ user.username }}.</p></li>
+                <li><a type="button" href="{% url 'logout' %}" class="boton">Cerrar Sesión</a></li>
+            {% else %}
+                <li><a type="button" href="{% url 'login' %}" class="boton" >Iniciar Sesión</a></li>
+                <li><a type="button" href="{% url 'registrarse' %}"  class="boton" >Registrarse</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>
