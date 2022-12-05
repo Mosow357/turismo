@@ -1,0 +1,16 @@
+{% extends './base.html' %}
+{% block titulo %}{{ nombre_sitio }}
+{% endblock titulo %} {% block css %}
+
+{% load static %}
+<link
+  rel="stylesheet"
+  href="{% static '/tornquist/publica/css/contacto.css'%}?v={% now 'U' %}"
+/>
+{% endblock css %}
+
+{% block contenido %}
+
+<h1><b>{{ mensaje }}</b></h1>
+
+{% endblock %}
