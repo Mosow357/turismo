@@ -1,44 +1,34 @@
 {% extends './base.html' %}
 
-{% block titulo %}Contacto{% endblock titulo %}
+{% block titulo %} Solicitud {% endblock titulo %}
 {% block css %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static '/tornquist/publica/css/zonasAlojamiento.css'%}?v={% now 'U' %}">
     {% load static %}
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/contacto.css'%}?v={% now 'U' %}">
 {% endblock css %}
 
+
 {% block contenido %}
 <section class="content showcase">
-    <h1 class="logo2"><b>CO</b>NTACTO</h1>
+    <h1 class="logo2"><b>SO</b>LICITUD</h1>
 
     <div class="contact-wrapper animated bounceInUp">
       <div class="contact-form" id="form">
-        <form action="" method="POST">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+        {% endfor %}
+        <form action="" method="post" id="contact" enctype="multipart/form-data">
             {% csrf_token %}
-            
-            <div>
-                {% for campo in form %}
-
-                <p>
-                    <label>{{ campo.label }}</label>
-                    {{ campo }}
-                </p>
-                    <div>{{ campo.errors }}</div>
-                {% endfor %}
-            </div>
-          
-            <div class="center">
-              <button type="submit">Enviar</button>
-            </div>
-            
-            
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" role="alert">
-                        {{ message }} 
-                    </div>
-                {% endfor %}
-            <p class="warnings" id="warnings"></p>
+            {% for campo in form %}
+            <p>
+              <label for="">{{ campo.label }}</label>
+              {{ campo }}
+            </p>
+            {% endfor %}
+                      
+          <p class="block">
+            <button type="submit">Enviar</button>
+          </p>
+          <p class="warnings" id="warnings"></p>
         </form>
       </div>
       
@@ -63,7 +53,3 @@
 </section>
 {% endblock contenido %}
 
-{% block javascript %}
-    {% comment %} {% load static %}
-    <script src={% static '/tornquist/publica/js/validation.js' %}.></script> {% endcomment %}
-{% endblock javascript %}

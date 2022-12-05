@@ -1,6 +1,9 @@
 from django.contrib import admin
-from tornquist.models import Gastronomia, Actividades, PuntosInteres, ZonasAlojamientos, Consulta
-
+from tornquist.models import Gastronomia, Actividades, PuntosInteres, ZonasAlojamientos
+from tornquist.models import Consulta
+from tornquist.models import Respuesta
+from tornquist.models import Solicitud
+from tornquist.models import RespuestaSolicitud
 from django.contrib.auth.models import User,Group
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 
@@ -19,31 +22,69 @@ class TornquistAdminSite(admin.AdminSite):
 # admin.site.register(ZonasAlojamientos)
 
 class GastronomiaMAdmin(admin.ModelAdmin):
-    list_display = ('nombre','telefono','pagina_web')
-    list_editable= ('telefono','pagina_web')
+    list_display = ['nombre','telefono','sitio', 'estado_de_respuesta']
+    list_editable= ('telefono','sitio')
     search_fields = ['nombre',]
+    list_filter = ['estado']
 
 class ActividadesMAdmin(admin.ModelAdmin):
-    list_display = ('nombre','telefono','pagina_web')
-    list_editable= ('telefono','pagina_web')
+    list_display = ['nombre','telefono','sitio', 'estado_de_respuesta']
+    list_editable= ('telefono','sitio')
     search_fields = ['nombre',]
+    list_filter = ['estado']
 
 class ZonasAlojamientoMAdmin(admin.ModelAdmin):
-    list_display = ('nombre','telefono','pagina_web')
-    list_editable= ('telefono','pagina_web')
+    list_display = ['nombre','telefono','sitio', 'estado_de_respuesta']
+    list_editable= ('telefono','sitio')
     search_fields = ['nombre',]
+    list_filter = ['estado']
 
 class PuntosInteresMAdmin(admin.ModelAdmin):
-    list_display = ('nombre','telefono','pagina_web')
-    list_editable= ('telefono','pagina_web')
+    list_display = ['nombre','telefono','sitio', 'estado_de_respuesta']
+    list_editable= ('telefono','sitio')
     search_fields = ['nombre',]
+    list_filter = ['estado']
 
-class ConsultaMAdmin(admin.ModelAdmin):
-    list_display = ('nombre','email','mensaje')
+class RespuestaInLine(admin.TabularInline):
+    model = Respuesta
+    extra = 0
+
+class ConsultaAdmin(admin.ModelAdmin):
+    inlines = [RespuestaInLine]
+
+    list_display = [
+        'nombre',
+        'asunto',
+        'estado_de_respuesta',
+        'fecha',
+    ]
+    list_filter = ['estado_respuesta', 'fecha']
+
+class RespuestaSolicitudInLine(admin.TabularInline):
+    model = RespuestaSolicitud
+    extra = 0
+
+class SolicitudAdmin(admin.ModelAdmin):
+    inlines = [RespuestaSolicitudInLine]
+
+    list_display = [
+        'nombre',
+        'sitio',
+        'rubro',
+        'estado_de_respuesta',
+        'fecha',
+    ]
+
+    list_filter = ['estado_respuesta', 'fecha']
+
+admin.site.register(Solicitud, SolicitudAdmin)
+
+
 
 mi_admin = TornquistAdminSite(name='tornquistadmin')
 mi_admin.register(Gastronomia, GastronomiaMAdmin)
 mi_admin.register(Actividades, ActividadesMAdmin)
 mi_admin.register(ZonasAlojamientos, ZonasAlojamientoMAdmin)
 mi_admin.register(PuntosInteres, PuntosInteresMAdmin)
-mi_admin.register(Consulta, ConsultaMAdmin)
+mi_admin.register(Consulta, ConsultaAdmin)
+mi_admin.register(Solicitud, SolicitudAdmin)

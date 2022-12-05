@@ -15,6 +15,7 @@
             <li><a href="{% url 'actividades' %}">Actividades</a></li>
             <li><a href="{% url 'puntosInteres' %}">Puntos de Interés</a></li>
             <li><a href="{% url 'emergencias' %}">Emergencias</a></li>
+            <li><a href="{% url 'solicitud' %}">Solicitud</a></li>
             <li><a href="{% url 'contacto' %}">Contacto</a></li>
             {% if user.is_authenticated %}
                 <li><p type="text" style="display: inline" class="">Hola, {{ user.username }}.</p></li>
