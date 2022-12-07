@@ -1,26 +1,26 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-# from django.urls import reverse
-# from django.template import loader
-from django.views.generic import FormView
-from django.views.generic import View
-from tornquist.forms import ContactoForm
-from tornquist.forms import SolicitudForm
-
-# from django.contrib import messages
+from django.urls import reverse
+from django.template import loader
+from django.views.generic import FormView, View
 
 from tornquist.models import Gastronomia, Actividades, PuntosInteres, ZonasAlojamientos, Consulta, TipoConsulta
 
-from tornquist.forms import ContactoForm, RegistrarUsuarioForm
+from tornquist.forms import ContactoForm, RegistrarUsuarioForm, SolicitudForm
 
 from django.contrib import messages
 
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.core.mail import send_mail
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
+
 def index(request):
     return render(request,'tornquist/publica/index.html')
 
@@ -43,37 +43,6 @@ def puntosInteres(request):
 def emergencias(request):
     return render(request,'tornquist/publica/emergencias.html')
 
-# def contacto(request):
-#     return render(request,'tornquist/publica/contacto.html')
-
-class Contacto(FormView):
-    template_name = 'tornquist/publica/contacto2.html'
-    form_class = ContactoForm
-    success_url = 'mensaje_enviado'
-
-    def form_valid(self, form):
-        form.save()
-        #form.send_email()
-        return super().form_valid(form)
-
-class MensajeEnviado(View):
-    template = 'tornquist/publica/mensaje_enviado.html'
-
-    def get(self, request):
-        params = {}
-        params['nombre_sitio'] = 'Contacto'
-        params['mensaje'] = 'mensaje de consulta realizada'
-        return render(request, self.template, params)
-
-class SolicitudView(FormView):
-    template_name = 'tornquist/publica/solicitud.html'
-    form_class = SolicitudForm
-    success_url = 'mensaje_enviado'
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-
 def contacto(request):
     if(request.method == 'POST'):
         contacto_form = ContactoForm(request.POST)
@@ -92,21 +61,6 @@ def contacto(request):
         
     return render(request,'tornquist/publica/contacto2.html',{'contacto_form':contacto_form})
 
-def EditarContacto(request,id_consulta):
-    try:
-        consulta = Consulta.objects.get(pk=id_consulta)
-        contact = Consulta.objects.all()
-    except Consulta.DoesNotExist:
-        return render(request,'tornquist/publica/index.html')
-    if(request.method == 'POST'):
-        formulario = ContactoForm(request.POST,instance=consulta)
-        if formulario.is_valid():
-            formulario.save()
-            messages.success(request,'Hemos editado su consulta')
-    else:
-       formulario = ContactoForm(instance=consulta)
-    return render(request,'tornquist/publica/contacto.html',{'contacto_form':formulario,'consultas': contact})
-
 def login(request):
     if request.method == 'POST':
         # AuthenticationForm_can_also_be_used__
@@ -122,7 +76,8 @@ def login(request):
                 return redirect(nxt)
         else:
             messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
-    form = AuthenticationForm()
+    else:        
+        form = AuthenticationForm()
     return render(request, 'tornquist/publica/login.html', {'form': form})
 
 def registrarse(request):
@@ -136,3 +91,47 @@ def registrarse(request):
     else:
         form = RegistrarUsuarioForm()
     return render(request, 'tornquist/publica/registrarse.html', {'form': form})
+
+# @login_required(login_url=settings.LOGIN_URL)
+# def solicitud(request):
+#     return render(request,'tornquist/publica/solicitud.html')
+
+# @method_decorator(login_required, name='dispatch')    
+# class SolicitudView(FormView):
+#     template_name = 'tornquist/publica/solicitud.html'
+#     form_class = SolicitudForm
+#     success_url = 'mensaje_enviado'
+
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
+        
+@method_decorator(login_required, name='dispatch')    
+class SolicitudView(FormView):
+    template_name = 'tornquist/publica/solicitud.html'
+    form_class = SolicitudForm
+    # success_url = 'mensaje_enviado'
+
+    def get(self, request,*args, **kwargs):
+        form = self.form_class()
+        return render(request,self.template_name,{'form':form})
+    
+    def post(self,request,*args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Hemos recibido tu solicitud, queda sujeta a aprobacion de un administrador.')
+            messages.info(request,'Recibiras un mail cuando se apruebe. Gracias')
+            form = SolicitudForm()
+        return render(request,self.template_name,{'form':form})
+
+
+@method_decorator(login_required, name='dispatch') 
+class MensajeEnviado(View):
+    template = 'tornquist/publica/mensaje_enviado.html'
+
+    def get(self, request):
+        params = {}
+        params['nombre_sitio'] = 'Contacto'
+        params['mensaje'] = 'mensaje de consulta realizada'
+        return render(request, self.template, params)  

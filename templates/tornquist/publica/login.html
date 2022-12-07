@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/login.css'%}?v={% now 'U' %}">
 {% endblock css %}
 
+
 {% block contenido %}
 <section class="content showcase">
     <div class="login-page">
@@ -20,6 +21,20 @@
             value="{{ form.password.value | default:'' }}"/>
             <button type="submit" href="{% url 'inicio' %}">Iniciar Sesion</button>
             <p class="message">No estas registrado? <a href="{% url 'registrarse' %}">Crea una cuenta</a></p>
+
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}" role="alert">
+                  {{message}}
+              </div>
+            {% endfor %}
+            {% if form.non_field_errors %}
+              {% for error in form.non_field_errors %} 
+                <div class="alert alert-danger">
+                  <strong>{{ error|escape }}</strong>
+                </div>
+              {% endfor %}
+            {% endif %}
+            <p class="warnings" id="warnings"></p>
           </form>
         </div>
     </div>

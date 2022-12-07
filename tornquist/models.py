@@ -1,13 +1,37 @@
 from django.db import models
 from datetime import datetime
 from django.utils.html import format_html
-from tornquist.validaciones import solo_caracteres
-from tornquist.validaciones import clean_mensaje
+from tornquist.validaciones import solo_caracteres, clean_mensaje, valid_extension
+import os
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 
-def carpetas_de_guardado(instance, filename):
-    return '{0}/{1}'.format(instance.rubro, filename)
+from django.shortcuts import render
+
+from django.template.loader import get_template
+import threading
 
 # Create your models here.
+
+def create_mail(user_mail, subject, template_name, context):
+    template = get_template(template_name)
+    content = template.render(context)
+
+    message = EmailMultiAlternatives(
+        subject=subject,
+        body='',
+        from_email=settings.EMAIL_HOST_USER,
+        to=[
+            user_mail
+        ],
+    )
+
+    message.attach_alternative(content, 'text/html')
+    return message
+
+
+def carpetas_de_guardado(instance, filename):
+    return os.path.join(str(instance.rubro), filename)
 
 class CardABS(models.Model):
 
@@ -18,32 +42,31 @@ class CardABS(models.Model):
         (ACEPTADA, 'Aceptada'),
         (BAJA , 'Baja'),
     )
-    
+
     nombre = models.CharField(max_length=100,verbose_name='nombre')
     ubicacion = models.CharField(max_length=150,verbose_name='ubicacion')
     telefono = models.CharField(max_length=150,verbose_name='telefono')
     direccion = models.CharField(max_length=150,verbose_name='direccion')
-    sitio = models.CharField(max_length=150,verbose_name='pagina_web')
-    #url_img = models.ImageField(upload_to='imagenes/', max_length=200,verbose_name='url_img')
+    pagina_web = models.CharField(max_length=150,verbose_name='pagina_web')
     estado = models.CharField(max_length=15, choices=ESTADOS, default=ACEPTADA)
+
+    class Meta:
+        abstract = True
 
     def estado_de_respuesta(self,):
         if self.estado == 'Aceptada':
             return format_html('<span style="background-color:#0a0; color:#fff;padding:5px;">{}</span>', self.estado)
         elif self.estado == 'Baja':
             return format_html('<span style="background-color:#a00; color:#fff;padding:5px;">{}</span>', self.estado)
-
-    class Meta:
-        abstract = True
     
-    # def delete(self,using=None,keep_parents=False):
-    #     self.url_img.storage.delete(self.url_img.name)
-    #     super().delete()
+    def delete(self,using=None,keep_parents=False):
+        self.url_img.storage.delete(self.url_img.name)
+        super().delete()
 
 
 class Gastronomia(CardABS):
 
-    imagen = models.ImageField(upload_to = "Gastronomia/", blank= True, null= True)
+    url_img = models.ImageField(upload_to = "Gastronomia/", blank= True, null= True)
 
     def __str__(self):
         return self.nombre
@@ -57,12 +80,11 @@ class Gastronomia(CardABS):
     #     super().save()
 
     class Meta():
-        verbose_name_plural='Gastronomia'
-        
+        verbose_name_plural='Gastronomias'
 
 class Actividades(CardABS):
 
-    imagen = models.ImageField(upload_to = "Actividades/", blank= True, null= True)
+    url_img = models.ImageField(upload_to = "Actividades/", blank= True, null= True)
 
     def __str__(self):
         return self.nombre
@@ -80,7 +102,8 @@ class Actividades(CardABS):
 
 class PuntosInteres(CardABS):
 
-    imagen = models.ImageField(upload_to = "Puntos de interes/", blank= True, null= True)
+    url_img = models.ImageField(upload_to = "PuntosInteres/", blank= True, null= True)
+
 
     def __str__(self):
         return self.nombre
@@ -98,7 +121,7 @@ class PuntosInteres(CardABS):
 
 class ZonasAlojamientos(CardABS):
 
-    imagen = models.ImageField(upload_to = "Alojamiento/", blank= True, null= True)
+    url_img = models.ImageField(upload_to = "ZonasAlojamientos/", blank= True, null= True)
 
     def __str__(self):
         return self.nombre
@@ -133,34 +156,16 @@ class Consulta(models.Model):
         (ENPROCESO, 'En proceso'),
     )
 
-    nombre = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        validators=(solo_caracteres,),
-        verbose_name='Nombre Completo',
-        ) 
-    telefono = models.IntegerField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Numero de telefono',
-        )
-    email = models.EmailField(max_length=50, blank=True, null=True)
-    asunto = models.CharField(max_length=50, blank=True, null=True)
-    mensaje = models.TextField(
-        max_length=300,
-        blank=False,
-        null=False,
-        validators=(clean_mensaje,),
-        )
+    nombre = models.CharField(max_length=100,validators=(solo_caracteres,),verbose_name='nombre_completo')
+    telefono = models.IntegerField(verbose_name='telefono')
+    email = models.EmailField(max_length=50, verbose_name='email')
+    asunto = models.ForeignKey(TipoConsulta,on_delete=models.CASCADE,verbose_name='asunto')
+    mensaje = models.CharField(max_length=400,verbose_name='mensaje', validators=(clean_mensaje,))
     estado_respuesta = models.CharField(max_length=15, blank=True, null=True, choices=ESTADOS, default= NOCONTESTADA) 
      
     fecha = models.DateField(default=datetime.now, blank=True, editable=True) 
 
-    def __str__(self) -> str:
-        return self.nombre
-
+   
     def estado_de_respuesta(self,):
         if self.estado_respuesta == 'Contestada':
             return format_html('<span style="background-color:#0a0; color:#fff;padding:5px;">{}</span>', self.estado_respuesta)
@@ -168,6 +173,12 @@ class Consulta(models.Model):
             return format_html('<span style="background-color:#a00; color:#fff;padding:5px;">{}</span>', self.estado_respuesta)
         elif self.estado_respuesta == 'En proceso':
             return format_html('<span style="background-color:#FOB203; color:#000;padding:5px;">{}</span>', self.estado_respuesta)
+
+    def __str__(self):
+        return f'Consulta de {self.nombre}' 
+    
+    class Meta():
+        verbose_name_plural='Consultas'
 
 class Respuesta(models.Model):
 
@@ -179,7 +190,20 @@ class Respuesta(models.Model):
         consulta_cambio_estado = Consulta.objects.get(id=self.consulta.id)
         consulta_cambio_estado.estado_respuesta = 'Contestada'
         consulta_cambio_estado.save()
+
         #LOGICA DE ENVIO DE MAIL
+        
+        mail = create_mail(
+        consulta_cambio_estado.email,
+        'Respuesta a Solicitud Web Turismo Tornquist',
+        'tornquist/publica/email.html',
+        {
+            'username': consulta_cambio_estado.nombre,
+            'mensaje': self.respuesta
+        }
+        )
+
+        mail.send(fail_silently=False)
 
     def save(self, *args, **kwargs):
         self.create_mensaje()
@@ -187,7 +211,6 @@ class Respuesta(models.Model):
         if self.id:
             force_update = True
         super(Respuesta, self).save(force_update=force_update)
-
 
 class Solicitud(models.Model):
 
@@ -217,14 +240,14 @@ class Solicitud(models.Model):
             ("Sierra de la ventana", "Sierra de la ventana"),
         ]
 
-    nombre = models.CharField(max_length=50, blank=True, null=True) 
-    ubicacion = models.CharField(max_length=200, choices=UBICACIONES, blank=True, null=True)
-    rubro = models.CharField(max_length=20, choices=RUBROS, blank=False, null=False)
-    direccion = models.CharField(max_length=50, blank=True, null=True)
-    estado_respuesta = models.CharField(max_length=15, blank=True, null=True, choices=ESTADOS, default= ENREVISION) 
-    sitio = models.CharField(max_length=50, blank=True, null=True)
-    telefono = models.CharField(max_length=50, blank=True, null=True) 
-    imagen = models.ImageField(upload_to = carpetas_de_guardado, blank= True, null= True)
+    nombre = models.CharField(max_length=50) 
+    ubicacion = models.CharField(max_length=200, choices=UBICACIONES)
+    rubro = models.CharField(max_length=20, choices=RUBROS)
+    direccion = models.CharField(max_length=50)
+    estado_respuesta = models.CharField(max_length=15, choices=ESTADOS, default= ENREVISION) 
+    sitio = models.CharField(max_length=50,)
+    telefono = models.CharField(max_length=50) 
+    imagen = models.ImageField(upload_to = carpetas_de_guardado, blank=True, editable=True, validators=[valid_extension])
     fecha = models.DateField(default=datetime.now, blank=True, editable=True) 
 
     def __str__(self) -> str:
@@ -251,7 +274,6 @@ class RespuestaSolicitud(models.Model):
         solicitud_cambio_estado.save()
         #LOGICA DE ENVIO DE MAIL
         
-    
     def generar_registro(self, rubro, solicitud):
         rubros = {
             'gastronomia':Gastronomia(),
@@ -272,6 +294,19 @@ class RespuestaSolicitud(models.Model):
         instancia.estado    = solicitud.estado_respuesta
         instancia.save()
 
+    # def eliminar_registro(self, rubro, solicitud):
+    #     rubros = {
+    #         'gastronomia':Gastronomia(),
+    #         'actividades':Actividades(),
+    #         'interes':PuntosInteres(),
+    #         'alojamiento':ZonasAlojamientos(),
+
+    #     }
+    #     if rubro in rubros:
+    #         instancia = rubros[rubro]
+
+    #     instancia.delete()        
+
     def create_entidad(self,):
         get_estado_solicitud = Solicitud.objects.get(id=self.solicitud.id)
         if get_estado_solicitud.estado_respuesta == 'Aceptada':
@@ -283,9 +318,8 @@ class RespuestaSolicitud(models.Model):
                 self.generar_registro('interes', get_estado_solicitud)
             elif get_estado_solicitud.rubro == "Alojamiento":
                 self.generar_registro('alojamiento', get_estado_solicitud)
-            
-            
-
+        # else:
+        #     self.eliminar_registro()    
 
     def save(self, *args, **kwargs):
         self.create_mensaje()
