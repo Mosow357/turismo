@@ -21,7 +21,7 @@ urlpatterns = [
     #path('editar/<int:id_consulta>',views.EditarContacto,name='editar'),
 
 
-    # path('cuentas/registrarse', views.registrarse,name='registrarse'),
+    path('cuentas/registrarse', views.registrarse,name='registrarse'),
     path('cuentas/login/',views.login,name='login'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='tornquist/publica/login.html'), name='login'),  
     path('cuentas/logout/', auth_views.LogoutView.as_view(template_name='tornquist/publica/index.html'), name='logout'),
