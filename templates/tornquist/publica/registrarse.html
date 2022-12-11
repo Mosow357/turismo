@@ -14,24 +14,24 @@
           <form class="login-form" method="POST">
             {% csrf_token %}
             
-            <input type="text" placeholder="usuario" id="{{ form.username.auto_id }}" name="{{ form.username.name }}" 
+            <input type="text" placeholder="Usuario" id="{{ form.username.auto_id }}" name="{{ form.username.name }}" 
             value="{{ form.username.value | default:'' }}"/>
             <div class="warnings">{{form.username.errors}}</div>
 
-            <input type="email" placeholder="email" id="{{form.email.auto_id }}" name="{{form.email.name}}"  
+            <input type="email" placeholder="Email" id="{{form.email.auto_id }}" name="{{form.email.name}}"  
             value="{{ form.email.value | default:'' }}" class="form-control"/>
             <div class="warnings">{{form.email.errors}}</div>
 
-            <input type="password" placeholder="contraseña" id="{{ form.password1.auto_id }}" name="{{ form.password1.name }}" 
+            <input type="password" placeholder="Contraseña" id="{{ form.password1.auto_id }}" name="{{ form.password1.name }}" 
             value="{{ form.password1.value | default:'' }}"/>
             <div class="warnings">{{form.password1.errors}}</div>
 
-            <input type="password" placeholder="repetir contraseña" id="{{ form.password2.auto_id }}" name="{{ form.password2.name }}" 
+            <input type="password" placeholder="Repetir contraseña" id="{{ form.password2.auto_id }}" name="{{ form.password2.name }}" 
             value="{{ form.password2.value | default:'' }}"/>
             <div class="warnings">{{form.password2.errors}}</div>
 
             <button type="submit" href="{% url 'inicio' %}">Registrarse</button>
-            <p class="message">Ya estas registrado? <a href="{% url 'login' %}">Logueate</a></p>
+            <p class="message">¿Ya estás registrado? <a href="{% url 'login' %}">Ingresar</a></p>
           </form>
         </div>
     </div>
