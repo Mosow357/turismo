@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:300); */
 
 .login-page {
   width: 360px;
@@ -6,29 +6,33 @@
   margin: auto;
 }
 .form {
+  overflow: auto;
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgb(2, 166, 242);
+  box-shadow: 0 0 10px #03a9f4;
+  border-radius: 15px;
 }
 .form input {
-  font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #f2f2f2;
+  background: rgba(220, 220, 220, 0.9);
   width: 100%;
   border: 0;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: 15px;
 }
+.form input::placeholder {
+  color: #747474;
+  }
 .form button {
-  font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #03a9f4;
@@ -41,9 +45,11 @@
   transition: all 0.3 ease;
   cursor: pointer;
   text-align: center;
+  transition: background 0.15s ease-out;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: rgba(2, 166, 242, 0.368);
+  transition: background 0.15s ease-out;
 }
 .form .message {
   margin: 15px 0 0;
@@ -91,10 +97,14 @@
   color: #EF3B3A;
 }
 body {
-  /* background: #76b852;  */
-  /* background: rgb(141,194,111); */
-  /* background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%); */
-  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+/* @media (min-width: 920px){
+  .login-page {
+    padding: 4px;
+  }
+  .form {
+      scale: 80%;
+  }
+} */

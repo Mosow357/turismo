@@ -1,12 +1,11 @@
 {% extends './base.html' %}
 
-{% block titulo %}Contacto{% endblock titulo %}
+{% block titulo %}Login{% endblock titulo %}
 {% block css %}
     {% load static %}
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/contacto.css'%}?v={% now 'U' %}">
     <link rel="stylesheet" href="{% static '/tornquist/publica/css/login.css'%}?v={% now 'U' %}">
 {% endblock css %}
-
 
 {% block contenido %}
 <section class="content showcase">

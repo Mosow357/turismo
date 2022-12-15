@@ -10,7 +10,7 @@ from django.shortcuts import render
 
 from django.template.loader import get_template
 import threading
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 def create_mail(user_mail, subject, template_name, context):
@@ -28,7 +28,6 @@ def create_mail(user_mail, subject, template_name, context):
 
     message.attach_alternative(content, 'text/html')
     return message
-
 
 def carpetas_de_guardado(instance, filename):
     return os.path.join(str(instance.rubro), filename)
@@ -104,7 +103,6 @@ class PuntosInteres(CardABS):
 
     url_img = models.ImageField(upload_to = "PuntosInteres/", blank= True, null= True)
 
-
     def __str__(self):
         return self.nombre
     
@@ -143,7 +141,6 @@ class TipoConsulta(models.Model):
     def __str__(self):
         return self.asunto
 
-
 class Consulta(models.Model):
 
     CONTESTADA = 'Contestada'
@@ -165,7 +162,6 @@ class Consulta(models.Model):
      
     fecha = models.DateField(default=datetime.now, blank=True, editable=True) 
 
-   
     def estado_de_respuesta(self,):
         if self.estado_respuesta == 'Contestada':
             return format_html('<span style="background-color:#0a0; color:#fff;padding:5px;">{}</span>', self.estado_respuesta)
@@ -195,11 +191,12 @@ class Respuesta(models.Model):
         
         mail = create_mail(
         consulta_cambio_estado.email,
-        'Respuesta a Solicitud Web Turismo Tornquist',
+        'Respuesta a Consulta Web Turismo Tornquist',
         'tornquist/publica/email.html',
         {
             'username': consulta_cambio_estado.nombre,
-            'mensaje': self.respuesta
+            'mensaje': consulta_cambio_estado.mensaje,
+            'respuesta':self.respuesta
         }
         )
 
@@ -249,6 +246,7 @@ class Solicitud(models.Model):
     telefono = models.CharField(max_length=50) 
     imagen = models.ImageField(upload_to = carpetas_de_guardado, blank=True, editable=True, validators=[valid_extension])
     fecha = models.DateField(default=datetime.now, blank=True, editable=True) 
+    email_usuario = models.EmailField(max_length=50,)
 
     def __str__(self) -> str:
         return self.nombre
@@ -273,6 +271,19 @@ class RespuestaSolicitud(models.Model):
         solicitud_cambio_estado.estado_respuesta = self.estado_solicitud
         solicitud_cambio_estado.save()
         #LOGICA DE ENVIO DE MAIL
+
+        mail = create_mail(
+        solicitud_cambio_estado.email_usuario,
+        'Respuesta a Solicitud Web Turismo Tornquist',
+        'tornquist/publica/email_solicitud.html',
+        {
+            'mail_usuario': solicitud_cambio_estado.email_usuario,
+            'mensaje': self.respuesta,
+            'estado': solicitud_cambio_estado.estado_respuesta
+        }
+        )
+
+        mail.send(fail_silently=False)
         
     def generar_registro(self, rubro, solicitud):
         rubros = {
@@ -289,8 +300,8 @@ class RespuestaSolicitud(models.Model):
         instancia.ubicacion = solicitud.ubicacion
         instancia.telefono  = solicitud.telefono
         instancia.direccion = solicitud.direccion
-        instancia.sitio     = solicitud.sitio
-        instancia.imagen    = solicitud.imagen
+        instancia.pagina_web     = solicitud.sitio
+        instancia.url_img    = solicitud.imagen
         instancia.estado    = solicitud.estado_respuesta
         instancia.save()
 
@@ -328,4 +339,3 @@ class RespuestaSolicitud(models.Model):
         if self.id:
             force_update = True
         super(RespuestaSolicitud, self).save(force_update=force_update)
-

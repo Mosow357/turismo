@@ -26,14 +26,14 @@
 <body>
 
     {% include './nav.html' %}
+    {% load static %}
+        <img src="{% static '/tornquist/publica/img/Atardecer.jpg'%}" alt="" class="background">
     <a class = "botonwa" href="https://wa.me/34555005500" target="_blank">
         {% load static %}
         <img src="{% static '/tornquist/publica/img/logo-wasap.png' %}" width="60" height="60">
     </a>
     
     <main>
-        {% load static %}
-        <img src="{% static '/tornquist/publica/img/Atardecer.jpg'%}" alt="" class="background">
         {% block contenido %}{% endblock contenido %}
     </main>
     
