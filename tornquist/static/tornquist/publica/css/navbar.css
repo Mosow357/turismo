@@ -6,15 +6,7 @@
     box-sizing: border-box;
     font-family: 'Quicksand', sans-serif;
 }
-nav{
-    background: rgba(11, 11, 11, 0.959);
-    height: 90px;
-    width: 100%;
-    z-index: 999;
-    position: fixed;
-    overflow: visible;
-    top: 0;
-}
+
 .boton {
     background: #03a9f4;
     width: 100%;
@@ -26,33 +18,43 @@ nav{
     /* transition: all 0.3 ease; */
     cursor: pointer;
 }
-.boton:hover {
+/* .boton:hover {
     background: #43A047;
-}
+} */
 .enlace{
     position: absolute;
-    padding: 2px 50px;
     display: inline-block;
 }
 .logo{
-    height: 80px;
+    height: 12vh;
+    margin: 1vh 0 1vh 1.5vw;
 }
-nav .navBar {
-    float: right;
-    margin-right: 20px;   
-    text-align: center; 
+nav {
+    position: fixed;
+    width: 100%;
+    height: 16vh;
+    background: rgba(231, 234, 237, 0.504);
+    z-index: 999;
+    overflow: visible;
+    top: 0;
 }
-nav ul li{
+.navBar {
+    margin-right: 20px;    
+    text-align: right; 
+    white-space:nowrap;
+    margin: 6.60vh 1.5vw; 
+}
+nav li{
     display: inline-block;
-    line-height: 20px;
+    margin: 0 0.25vw;
 }
-nav ul li a{
+nav a{
     color: rgba(12, 12, 12, 0.668);
-    font-size: 22px;
+    font-size: 1.4vw;
     font-weight: bold;
     border-radius: 7px;
 }
-nav ul li p {
+nav p {
     color:rgba(12, 12, 12, 0.668);
 }
 .navBar li a.active, .navBar li a:hover{
@@ -62,42 +64,65 @@ nav ul li p {
     cursor: pointer;
 }
 .checkbtn{
-    font-size: 40px;
-    color: rgba(231, 234, 237, 0.668);
-    float: right;
-    line-height: 90px;
-    margin-right: 40px;
-    cursor: pointer;
     display: none; 
 }
 #check{
     display: none;
 }
 
-@media (max-width: 1180px){
-    .enlace{
-        padding-left: 20px;
-    }
-    nav ul li a{
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 1180px){
-    .checkbtn{
-        display: block;
-    }
-    .navBar{
-        position: fixed;
+@media (max-width: 1199.98px){
+    nav{
+        background: rgba(11, 11, 11, 0.959);
         width: 100%;
+        z-index: 999;
+        position: fixed;
+        overflow: visible;
+    }
+    .navBar {
+        position: fixed;
+        width: 98%;
         height: 80vh;
         background: rgba(231, 234, 237, 0.825);
         top: 70px;
         left: -100%;
         text-align: center;
-        transition: all .7s;  
+        transition: all .7s; 
     }
-    nav ul li{
+    .logo{
+        margin: 1vh 5vw;
+    }
+    .checkbtn{
+        display: block;
+        color: rgba(231, 234, 237, 0.668);
+        float: right;
+        margin: 7.5vh 5vw;
+        font-size: 25px;
+    }
+    #check:checked ~ ul{
+        left: 0;
+        z-index: 99;
+    }
+    nav li{
+        display: block;
+        margin: 2.5vw;
+        line-height: 7vh;
+    }
+    nav a{
+        font-size: 5vw;
+        color: rgba(7, 7, 7, 0.668);
+        font-weight: bold;
+        padding: 3px 13px;
+    }
+    li a:hover, li a.active{
+        background: none;
+        color: #03a9f4;
+    }
+}
+
+/* @media (max-width: 1180px){ */
+   
+   
+    /* nav ul li{
         display: block;
         margin: 28px 0;
         line-height: 30px;
@@ -115,20 +140,20 @@ nav ul li p {
     #check:checked ~ ul{
         left: 0;
         z-index: 99;
-    }
-}
+    } */
+/* } */
 
-@media (min-width: 1180px){
-    .navBar{
+/* @media (min-width: 1180px){ */
+    /* .navBar{
         height: 80px;
-    }
-    nav{
+    } */
+    /* nav{
         background: rgba(231, 234, 237, 0.504)
-    }
-    nav .navBar li{
+    } */
+    /* nav .navBar li{
         padding-top: 30px;
     }
     nav .navBar li a{
         padding-right: 7px;
-    }
-}
+    } */
+/* } */
