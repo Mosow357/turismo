@@ -8,6 +8,11 @@ body {
     justify-content: center;
     min-height: 100vh;
     background: black;
+    position: relative;
+    padding-bottom: 55px;
+}
+main {
+    position: relative;
 }
 .card-board {
     display: flex;
@@ -92,8 +97,19 @@ body {
         padding: 0;
         align-content: space-around;
         padding-top: 120px;       
+    }  
+}
+@media (min-width: 920px){
+    .card-board {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+        padding-top: 110px;
+        align-content: space-around;
+    }    
+    .card {
+        width: 310px;
+        height: 210px;
     }
-    
-
-    
 }

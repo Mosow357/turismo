@@ -91,21 +91,7 @@ def registrarse(request):
     else:
         form = RegistrarUsuarioForm()
     return render(request, 'tornquist/publica/registrarse.html', {'form': form})
-
-# @login_required(login_url=settings.LOGIN_URL)
-# def solicitud(request):
-#     return render(request,'tornquist/publica/solicitud.html')
-
-# @method_decorator(login_required, name='dispatch')    
-# class SolicitudView(FormView):
-#     template_name = 'tornquist/publica/solicitud.html'
-#     form_class = SolicitudForm
-#     success_url = 'mensaje_enviado'
-
-#     def form_valid(self, form):
-#         form.save()
-#         return super().form_valid(form)
-        
+      
 @method_decorator(login_required, name='dispatch')    
 class SolicitudView(FormView):
     template_name = 'tornquist/publica/solicitud.html'
@@ -118,6 +104,8 @@ class SolicitudView(FormView):
     
     def post(self,request,*args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
+        mail = self.request.user.email
+        form.instance.email_usuario = mail
         if form.is_valid():
             form.save()
             messages.success(request,'Hemos recibido tu solicitud, queda sujeta a aprobacion de un administrador.')
@@ -134,4 +122,4 @@ class MensajeEnviado(View):
         params = {}
         params['nombre_sitio'] = 'Contacto'
         params['mensaje'] = 'mensaje de consulta realizada'
-        return render(request, self.template, params)  
+        return render(request, self.template, params)

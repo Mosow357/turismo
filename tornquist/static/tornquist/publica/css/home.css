@@ -1,14 +1,18 @@
 body{
     background-color: black;
-    height: 100vh;
 }
 .tarjeta button b {
-    color: #03a9f4;  
+    color: #03a9f4;
 }
 .botonwa {
     position: fixed;
-    bottom: 40px;
+    bottom: 60px;
     right: 40px;
+    z-index: 50;
+}
+.botonwa:hover {
+    transform: scale(1.2) translateY(-5px);
+    transition: .5s;
 }
 .background{
     position: absolute;
@@ -62,13 +66,12 @@ body{
 .tarjeta h3 {
     color: rgba(231, 234, 237, 0.895);
 }
-
 @media(min-width: 920px){
     .categorias{
         display: flex;
         height: 60vh;
         justify-content: space-evenly;
-        padding-top: 90px;
+        padding-top: 250px;
     }
     .social{
         margin-bottom: 15px;
@@ -77,7 +80,6 @@ body{
         width: 200px;
     }
 }
-
 @media(max-width: 460px){
     .categorias {
         display: flex;
