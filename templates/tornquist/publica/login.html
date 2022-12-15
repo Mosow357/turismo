@@ -14,12 +14,12 @@
           <form class="login-form" method="POST">
             {% csrf_token %}
             
-            <input type="text" placeholder="usuario" id="{{ form.username.auto_id }}" name="{{ form.username.name }}" 
+            <input type="text" placeholder="Usuario" id="{{ form.username.auto_id }}" name="{{ form.username.name }}" 
             value="{{ form.username.value | default:'' }}"/>
-            <input type="password" placeholder="contraseña" id="{{ form.password.auto_id }}" name="{{ form.password.name }}" 
+            <input type="password" placeholder="Contraseña" id="{{ form.password.auto_id }}" name="{{ form.password.name }}" 
             value="{{ form.password.value | default:'' }}"/>
-            <button type="submit" href="{% url 'inicio' %}">Iniciar Sesion</button>
-            <p class="message">No estas registrado? <a href="{% url 'registrarse' %}">Crea una cuenta</a></p>
+            <button type="submit" href="{% url 'inicio' %}">Iniciar Sesión</button>
+            <p class="message">¿No estás registrado? <a href="{% url 'registrarse' %}">Creá una cuenta.</a></p>
 
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }}" role="alert">

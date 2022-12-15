@@ -100,11 +100,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
-/* @media (min-width: 920px){
-  .login-page {
-    padding: 4px;
-  }
-  .form {
-      scale: 80%;
-  }
-} */

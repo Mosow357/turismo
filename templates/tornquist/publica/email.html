@@ -1,12 +1,129 @@
 <!DOCTYPE >
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: black;
+            opacity: 0.7;
+        }
+        table {
+            border-spacing: 0;            
+        }
+        td {
+            padding: 0;            
+        }
+        img {
+            border: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: black;
+            padding-bottom: 60px;
+        }
+
+        .main {
+            background-color: black;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 700px;
+            border-spacing: 0;
+            font-family: sans-serif;
+            color: antiquewhite;
+        }
+
+        .two-columns {
+            text-align: center;
+            font-size: 0;
+
+        }
+
+        .two-columns .column {
+            width: 100%;
+            max-width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+
+        
+    </style>
 </head>
 <body>
-    <div>
-        <h2>Hola {{ username }}, te damos la bienvenida a Tornquist</h2>
-        <h3>{{ mensaje }}</h3>
-    </div>
+    <center class="wrapper">
+
+        <table class="main" width="100%">
+            
+            <!--top border-->
+            <tr>
+                <td height="9" style="background-color: black;"></td>
+            </tr>
+
+            <!--logo section-->
+            <tr>
+                <td style="padding: 14px 0 4px;">
+                    <table width="100%">
+
+                        <tr>
+                            <td class="two-columns">
+
+                                <table class="column">
+                                    <tr>
+                                        <td style="padding: 0 62px 10px;">
+                                            <a href=""><img src="/media/imagenes/Municipio-icono.png" alt="Tornquist Turismo" width="160" title="Tornquist Turismo"></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="column">
+                                    <tr>
+                                        <td style="padding: 23px 72px;">
+                                            <a style="opacity: 0.55;" href=""><img src="/media/imagenes/facebook-icon.png" alt="" srcset="" width="30"></a>
+                                            <a style="opacity: 0.55; padding-left: 6px;" href=""><img src="/media/imagenes/twitter-icon.png" alt="" srcset="" width="30"></a>
+                                            <a style="opacity: 0.55; padding-left: 6px;" href=""><img src="/media/imagenes/instagram-icon.png" alt="" srcset="" width="30"></a>
+                                            <a style="opacity: 0.55; padding-left: 6px;" href=""><img src="/media/imagenes/whatsapp-icon.png" alt="" srcset="" width="30"></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+
+<!-- banner image -->
+
+            <tr>
+                <td>
+                    <a href="#" style="opacity: 0.69; box-shadow: 0 5px 10px #03a9f4;"><img src="/media/imagenes/municipio.jpg" alt="" srcset="" width="700px" style="max-width:100%;"></a>
+                </td>
+            </tr>
+
+            <table style="padding-top: 35px;">
+                <tr>
+                    <td>
+                        <div style="border: 8px; border-color: #03a9f4; box-shadow: 0 5px 10px #03a9f4; border-radius: 12px; max-width: 100%; padding: 8px 20px 8px 20px;">
+                            <h2 style="color: rgb(180, 215, 246);">Hola {{ username }}, te damos la bienvenida a Tornquist</h2>
+                            <h3 style="color: rgb(180, 215, 246);">Recibimos tu consulta, gracias por comunicarte con el municipio.</h3>
+                            <h3 style="color: rgb(180, 215, 246);">Tu solicitud fue {{ mensaje }}, ante cualquier duda escribinos.</h3>
+                        </div>
+                        
+                        
+                    </td>
+                </tr>
+            </table>
+
+            
+        </table>
+
+    </center>
 </body>
 </html>
