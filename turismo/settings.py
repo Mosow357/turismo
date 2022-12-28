@@ -75,16 +75,29 @@ WSGI_APPLICATION = 'turismo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#Prueba base de datos
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tornquist', 
-        'USER': 'postgres', 
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'turismo',
+        'USER': 'WalterM',
         'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+        'HOST': 'WalterM.mysql.pythonanywhere-services.com', 
+        'PORT': '3306',
     }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'tornquist',
+#        'USER': 'postgres',
+#        'PASSWORD': config('POSTGRES_PASSWORD'),
+#        'HOST': '127.0.0.1', 
+#        'PORT': '5432',
+#    }
+#}
 
 
 # Password validation
