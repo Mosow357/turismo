@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'turismo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'turismo',
+        'NAME': 'WalterM$turismo',
         'USER': 'WalterM',
         'PASSWORD': config('POSTGRES_PASSWORD'),
         'HOST': 'WalterM.mysql.pythonanywhere-services.com', 
